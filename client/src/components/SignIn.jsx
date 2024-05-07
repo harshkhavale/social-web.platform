@@ -3,9 +3,7 @@ import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../state";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
 const SignIn = ({ close, changeAuth }) => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -35,19 +33,25 @@ const SignIn = ({ close, changeAuth }) => {
             })
           );
         }
-
+        
+        // Handle successful sign-in, such as updating state or showing a success message
         console.log("Sign-in successful", loggedIn);
         toast.success("Sign-in successful!");
         close();
-        navigate("/");
-      } else {
-        console.error("Sign-in failed", response.statusText);
+        window.location.reload();
 
+      } else {
+        // Handle sign-in failure, such as displaying an error message
+        console.error("Sign-in failed", response.statusText);
+       
         toast.error("user dose not exists! check your credentials");
+
+        
       }
     } catch (error) {
       console.error("Sign-in error", error);
       toast.error("user dose not exists! check your credentials");
+
     }
   };
 
@@ -86,6 +90,7 @@ const SignIn = ({ close, changeAuth }) => {
           >
             Sign In
           </button>
+         
         </div>
       </form>
       <div className="other flex flex-col gap-2">
