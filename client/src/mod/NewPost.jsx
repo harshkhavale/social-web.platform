@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { userRequest } from "../requestMethods";
 import toast from "react-hot-toast";
 
-const NewPost = ({ close }) => {
+const NewPost = ({ close,feedControl }) => {
   const [image, setImage] = useState(null);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -48,6 +48,7 @@ const NewPost = ({ close }) => {
       console.error("Error creating post:", error);
       toast.error("Failed to create post. Please try again later.");
     }
+    feedControl();
   };
 
   return (

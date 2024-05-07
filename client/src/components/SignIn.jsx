@@ -38,7 +38,7 @@ const SignIn = ({ close, changeAuth }) => {
         console.log("Sign-in successful", loggedIn);
         toast.success("Sign-in successful!");
         close();
-        window.location.reload();
+        window.location.href = '/';
 
       } else {
         // Handle sign-in failure, such as displaying an error message

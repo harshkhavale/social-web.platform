@@ -33,7 +33,7 @@ const HomePage = () => {
 
   return (
     <div className="homepage md:grid grid-cols-5 gap-2 lg:mx-10">
-      {modal && <NewPost close={toggleMode} />}
+      {modal && <NewPost feedsControl={getFeeds} close={toggleMode} />}
       <div className="user col-span-1 shadow-md p-4 rounded-lg">
         <div className="user">
           <User />

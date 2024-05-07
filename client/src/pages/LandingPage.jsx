@@ -3,9 +3,9 @@ import { logo, mainbg } from "../assets";
 const LandingPage = () => {
   return (
     <div className="landingpage">
-      <div className="home flex flex-wrap px-4 ">
-        <p className=" text-5xl md:text-9xl w-min font-black bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
-          The one platform for all!
+      <div className="home flex md:justify-start justify-center flex-wrap px-4 ">
+        <p className=" text-3xl  text-center md:text-9xl md:w-min font-black bg-gradient-to-r from-blue-600 to-violet-600 bg-clip-text text-transparent">
+          One platform for all!
         </p>
         <img src={mainbg} className=" max-h-screen" alt="bg" />
       </div>
