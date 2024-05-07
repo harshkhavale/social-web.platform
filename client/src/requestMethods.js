@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/";
+const BASE_URL = "https://social-web-platform-server.onrender.com/";
 
 export const publicRequest = axios.create({
   baseURL: BASE_URL,
@@ -15,4 +15,4 @@ export const userRequest = (token) => {
   });
 };
 
-export const assetUrl = "http://localhost:5000/assets/";
+export const assetUrl = "https://social-web-platform-server.onrender.com/assets/";
