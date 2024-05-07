@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { MdOutlineSearch } from "react-icons/md";
 import { MdArrowDropDown } from "react-icons/md";
 
-import { MdOutlineModeEdit } from "react-icons/md";
 import AuthModel from "../mod/AuthModel";
 import { logo } from "../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { setLogout } from "../state";
+import { assetUrl } from "../requestMethods";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -32,16 +32,16 @@ const Header = () => {
     <div>
 
     <div className=" header font-semibold sticky top-0 z-40 bg-white flex justify-between p-4">
-      <div className="logo flex items-center font-bold text-3xl justify-center">
+      <div className="logo flex items-center font-bold md:text-3xl text-xl  justify-center">
       s
-      <img src={logo} alt="logo-img" className=" h-8 w-8" />
+      <img src={logo} alt="logo-img" className=" h-6 w-6 md:h-8 md:w-8" />
       cial
       </div>
-      <div className="search md:w-[20rem] flex md:text-sm font-bold gap-2 p-2 items-center focus:border-2 focus:border-black bg-gray-100 rounded-none">
+      <div className=" hidden md:visible search rounded-xl md:w-[20rem] md:flex md:text-sm gap-2 p-2 items-center focus:border-2 focus:border-black bg-gray-100 font-bold">
         <MdOutlineSearch className=" font-bold text-xl text-gray-500" />
         <input
           type="text"
-          className=" font-medium bg-transparent w-full outline-none"
+          className="  bg-transparent placeholder-black/40 font-bold w-full outline-none"
           placeholder="Search for your favorites"
         />
       </div>
@@ -56,10 +56,10 @@ const Header = () => {
       ) : (
         <div className="relative">
         <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2" onClick={toggleDropdown}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={toggleDropdown}>
             <img
               className="h-8 w-8 object-cover rounded-full cursor-pointer"
-              src={`http://localhost:5000/assets/${user.picture}`}
+              src={`${assetUrl}${user.picture}`}
               alt="profile-pic"
             />
             <p className="font-semibold">{`${user.firstName} ${user.lastName}`}</p>
@@ -79,11 +79,8 @@ const Header = () => {
       )}
     </div>
 
-    <div className=" md:hidden text-white text-3xl fixed bottom-4 cursor-pointer z-50 right-4 write bg-sky-500 rounded-full p-2" onClick={handleModal}>
-    <MdOutlineModeEdit />
-
-    </div>
-    {modal && <AuthModel handler={handleModal}  />}
+    
+    {modal && <AuthModel handler={handleModal} init={"SI"} />}
 
     </div>
 

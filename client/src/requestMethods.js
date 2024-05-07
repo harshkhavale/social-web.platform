@@ -14,3 +14,5 @@ export const userRequest = (token) => {
     },
   });
 };
+
+export const assetUrl = "http://localhost:5000/assets/"

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { IoCloseCircleSharp, IoCloudUploadOutline } from "react-icons/io5";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { userRequest } from "../requestMethods";
 import toast from "react-hot-toast";
+import { setPosts } from "../state";
 
 const NewPost = ({ close }) => {
+  const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -44,6 +46,7 @@ const NewPost = ({ close }) => {
         toast.success("Posted!");
         close();
       }
+      
     } catch (error) {
       console.error("Error creating post:", error);
       toast.error("Failed to create post. Please try again later.");

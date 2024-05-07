@@ -21,7 +21,7 @@ export const userSlice = createSlice({
     },
     setFriends: (state, action) => {
       if (state.user) {
-        state.user.friends = action.payload.friends;
+        state.user = { ...state.user, friends: action.payload.friends };
       } else {
         console.error("user friends non-existent :(");
       }
@@ -30,11 +30,10 @@ export const userSlice = createSlice({
       state.posts = action.payload.posts;
     },
     setPost: (state, action) => {
-      const updatedPosts = state.posts.map((post) => {
+      state.posts = state.posts.map((post) => {
         if (post._id === action.payload.post._id) return action.payload.post;
         return post;
       });
-      state.posts = updatedPosts;
     },
   },
 });

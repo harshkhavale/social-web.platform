@@ -3,7 +3,9 @@ import { publicRequest } from "../requestMethods";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../state";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const SignIn = ({ close, changeAuth }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -38,6 +40,8 @@ const SignIn = ({ close, changeAuth }) => {
         console.log("Sign-in successful", loggedIn);
         toast.success("Sign-in successful!");
         close();
+        navigate("/");
+
       } else {
         // Handle sign-in failure, such as displaying an error message
         console.error("Sign-in failed", response.statusText);
@@ -81,7 +85,7 @@ const SignIn = ({ close, changeAuth }) => {
             />
           </div>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center mt-4 gap-2">
           <button
             type="submit"
             className="bg-blue-500 p-2 w-full rounded-full text-white text-center font-bold"

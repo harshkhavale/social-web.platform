@@ -51,13 +51,12 @@ export const createPost = async (req, res) => {
       });
 
       // Save the new post to the database
-      await newPost.save();
+      const newPostData = await newPost.save();
 
       // Fetch all posts after saving the new post
-      const posts = await Post.find();
 
       // Return the updated list of posts
-      res.status(201).json(posts);
+      res.status(201).json(newPostData);
     });
   } catch (error) {
     // Handle any other errors
@@ -111,5 +110,59 @@ export const likePost = async (req, res) => {
     res.status(404).json({
       message: error.message,
     });
+  }
+};
+export const addComment = async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const { userId, comment ,userPicturePath,userName} = req.body;
+
+    // Find the post by postId
+    const post = await Post.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Create a new comment object
+    const newComment = {
+      userId,
+      userPicturePath,
+      userName,
+      comment,
+      createdAt: new Date(),
+    };
+
+    // Add the new comment to the post
+    post.comments.push(newComment);
+
+    // Save the updated post
+    await post.save();
+
+    res.status(201).json({ message: "Comment added successfully" });
+  } catch (error) {
+    console.error("Error adding comment:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+export const deletePost = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the post by ID
+    const post = await Post.findById(id);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    // Check if the current user is the owner of the post (optional)
+    // You may want to implement authentication and authorization to ensure only the owner can delete the post
+
+    // Delete the post
+    await Post.findByIdAndDelete(id);
+
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting post:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };

@@ -54,8 +54,8 @@ const SignUp = ({ close, changeAuth }) => {
       const loggedIn = await publicRequest.post("/auth/register", formDataToSend);
       // Handle success response
       if (loggedIn.status === 201) {
-        toast.success("Account created successfully!");
-        // 
+        toast.success("Account created successfully! SIGNIN please");
+        changeAuth('SI');
       }
   
       close();
@@ -152,12 +152,7 @@ const SignUp = ({ close, changeAuth }) => {
         >
           Create Account
         </button>{" "}
-        <p
-          className="md:hidden text-gray-600 font-normal underline underline-offset-4 cursor-pointer text-nowrap"
-          onClick={changeAuth}
-        >
-          or, Sign In
-        </p>
+        
       </div>
     </div>
   );

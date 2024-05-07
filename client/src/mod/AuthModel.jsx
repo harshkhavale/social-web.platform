@@ -4,9 +4,10 @@ import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
 import { authbg } from "../assets";
 import ForgotPassword from "../components/ForgotPassword";
+import ResetPassword from "../components/ResetPassword";
 
-const AuthModel = ({ handler, userhandler }) => {
-  const [account, setAccount] = useState("SI");
+const AuthModel = ({ handler, userhandler, init }) => {
+  const [account, setAccount] = useState(init);
 
   const changeAuth = (newState) => {
     setAccount(newState);
@@ -15,12 +16,12 @@ const AuthModel = ({ handler, userhandler }) => {
   return (
     <div className="fixed z-40 inset-0  flex justify-center items-center bg-black bg-opacity-50">
       <div
-        className="fixed z-50  -top-32 right-20   p-40  text-3xl md:text-white text-gray-600  cursor-pointer "
+        className="fixed z-50  md:-top-32 md:right-20 -top-6 -right-36  p-40  text-3xl text-white   cursor-pointer "
         onClick={handler}
       >
         <IoCloseCircleSharp />
       </div>
-      <div className="modal  overflow-hidden bg-white absolute md:inset-0  bottom-0  xl:max-h-min lg:mx-[15rem] md:m-[5rem] shadow-xl">
+      <div className="modal  overflow-hidden bg-white absolute md:inset-0  bottom-0  h-min lg:mx-[15rem] md:m-[5rem] shadow-xl">
         <div className=" hidden md:visible header md:flex justify-center items-center text-sm font-semibold p-4 bg-green-100 text-green-600 ">
           Let's learn, share & inspire each other with our passion for computer
           engineering. Sign up now 🤘🏼
@@ -48,6 +49,13 @@ const AuthModel = ({ handler, userhandler }) => {
                 close={handler}
               />
             )}
+             {account === "RP" && (
+              <ResetPassword
+                changeAuth={changeAuth}
+                userhandler={userhandler}
+                close={handler}
+              />
+            )}
             <div className=" flex items-center flex-col p-4 z-10 justify-end">
               {account === "SU" ? (
                 <div className=" flex items-center  flex-wrap justify-end">
@@ -60,7 +68,7 @@ const AuthModel = ({ handler, userhandler }) => {
                   </p>
                 </div>
               ) : account === "SI" ? (
-                <div className=" flex items-center flex-wrap justify-end">
+                <div className=" flex items-center flex-wrap justify-center">
                   <p className="text-sm text-nowrap">
                     Don’t have an account yet?
                   </p>
@@ -72,7 +80,7 @@ const AuthModel = ({ handler, userhandler }) => {
                   </p>
                 </div>
               ) : (
-                <div className=" flex items-center flex-wrap justify-end">
+                <div className=" flex items-center flex-wrap justify-center">
                   <p className="text-sm text-nowrap">
                     Don’t have an account yet?
                   </p>
