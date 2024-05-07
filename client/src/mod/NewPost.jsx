@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { IoCloseCircleSharp, IoCloudUploadOutline } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { userRequest } from "../requestMethods";
 import toast from "react-hot-toast";
-import { setPosts } from "../state";
 
 const NewPost = ({ close }) => {
-  const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
@@ -33,26 +31,24 @@ const NewPost = ({ close }) => {
       formData.append("lastName", user.lastName);
       formData.append("location", location);
       formData.append("description", description);
-      formData.append("picture", image); // Append file to FormData
-  
+      formData.append("picture", image);
+
       const response = await userRequest(token).post("posts/create", formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Set Content-Type header for FormData
+          "Content-Type": "multipart/form-data",
         },
       });
-  
+
       console.log(response);
       if (response.status === 201) {
         toast.success("Posted!");
         close();
       }
-      
     } catch (error) {
       console.error("Error creating post:", error);
       toast.error("Failed to create post. Please try again later.");
     }
   };
-  
 
   return (
     <div className="fixed z-40 inset-0  flex justify-center items-center bg-black bg-opacity-50">

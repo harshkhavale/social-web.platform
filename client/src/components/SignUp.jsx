@@ -4,7 +4,6 @@ import { GrCloudUpload } from "react-icons/gr";
 import { publicRequest } from "../requestMethods";
 import toast from "react-hot-toast";
 const SignUp = ({ close, changeAuth }) => {
-  
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -15,9 +14,7 @@ const SignUp = ({ close, changeAuth }) => {
 
   const handleChange = (e) => {
     if (e.target.type === "file") {
-      // Check if a file is selected
       const selectedFile = e.target.files[0];
-      // If a file is selected, set the picture field in form data
       setFormData({
         ...formData,
         picture: selectedFile ? selectedFile : null,
@@ -29,43 +26,39 @@ const SignUp = ({ close, changeAuth }) => {
       });
     }
   };
-  
-  
 
   const handleSubmit = async () => {
     try {
-      // Ensure passwords match
       if (formData.password !== formData.confirmPassword) {
         toast.error("Passwords do not match");
         return;
       }
-  
-      // Create form data
+
       const formDataToSend = new FormData();
       formDataToSend.append("firstName", formData.firstName);
       formDataToSend.append("lastName", formData.lastName);
       formDataToSend.append("email", formData.email);
       formDataToSend.append("password", formData.password);
       formDataToSend.append("confirmPassword", formData.confirmPassword);
-      formDataToSend.append("picture", formData.picture); // Append picture
-  
-      // Submit the form data to your backend endpoint
+      formDataToSend.append("picture", formData.picture);
+
       console.log("FORMDATA", formData);
-      const loggedIn = await publicRequest.post("/auth/register", formDataToSend);
-      // Handle success response
+      const loggedIn = await publicRequest.post(
+        "/auth/register",
+        formDataToSend
+      );
       if (loggedIn.status === 201) {
         toast.success("Account created successfully! SIGNIN please");
-        changeAuth('SI');
+        changeAuth("SI");
       }
-  
+
       close();
     } catch (error) {
       console.error("Error:", error);
-      // Handle error
       toast.error("Oops, something went wrong!");
     }
   };
-  
+
   return (
     <div className="signup flex flex-col gap-4">
       <p className="font-bold text-xl md:text-2xl">Create Account</p>
@@ -128,7 +121,7 @@ const SignUp = ({ close, changeAuth }) => {
             <input
               type="file"
               className="hidden"
-              onChange={handleChange} // Call handleChange function when the file input changes
+              onChange={handleChange}
               name="picture"
               accept="image/*"
             />
@@ -140,7 +133,6 @@ const SignUp = ({ close, changeAuth }) => {
                 ? formData.picture.name
                 : "Upload profile picture"}
             </span>
-            {/* Display selected file name or 'Upload' */}
           </label>
         </div>
       </div>
@@ -152,7 +144,6 @@ const SignUp = ({ close, changeAuth }) => {
         >
           Create Account
         </button>{" "}
-        
       </div>
     </div>
   );

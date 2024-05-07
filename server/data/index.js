@@ -34,7 +34,7 @@ export const users = [
     password: "$!FEAS@!O)_IDJda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picture: "p3.jpeg",
     friends: [],
-        viewedProfile: 12351,
+    viewedProfile: 12351,
     impressions: 55555,
     createdAt: 1595589072,
     updatedAt: 1595589072,
@@ -48,7 +48,7 @@ export const users = [
     password: "da39a3ee5e6b4b0d3255bfef95601890afd80709",
     picture: "p4.jpeg",
     friends: [],
-   
+
     viewedProfile: 45468,
     impressions: 19986,
     createdAt: 1288090662,
@@ -63,7 +63,7 @@ export const users = [
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picture: "p6.jpeg",
     friends: [],
-    
+
     viewedProfile: 41024,
     impressions: 55316,
     createdAt: 1219214568,
@@ -78,7 +78,7 @@ export const users = [
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picture: "p5.jpeg",
     friends: [],
-    
+
     viewedProfile: 40212,
     impressions: 7758,
     createdAt: 1493463661,
@@ -93,7 +93,7 @@ export const users = [
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picture: "p7.jpeg",
     friends: [],
-   
+
     viewedProfile: 976,
     impressions: 4658,
     createdAt: 1381326073,
@@ -108,7 +108,7 @@ export const users = [
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picture: "p8.jpeg",
     friends: [],
-    
+
     viewedProfile: 1510,
     impressions: 77579,
     createdAt: 1714704324,
@@ -123,7 +123,7 @@ export const users = [
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
     picture: "p9.jpeg",
     friends: [],
-    
+
     viewedProfile: 19420,
     impressions: 82970,
     createdAt: 1369908044,

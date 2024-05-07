@@ -3,7 +3,6 @@ import Post from "../models/Post.js";
 import path from "path";
 import multer from "multer";
 
-// Multer storage configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "public/assets/");
@@ -15,29 +14,24 @@ const storage = multer.diskStorage({
   },
 });
 
-// Multer upload middleware
 const upload = multer({ storage: storage }).single("picture");
 
 export const createPost = async (req, res) => {
   try {
-    // Handle file upload using multer
     upload(req, res, async (err) => {
       if (err) {
         console.log("multer error: " + err.message);
         return res.status(500).json({ message: "Error uploading file" });
       }
 
-      // Extract required data from the request
       const { userId, location, description } = req.body;
-      const profile = req.file.filename; // Use req.file to access uploaded file
+      const profile = req.file.filename;
 
-      // Find user by userId
       const user = await User.findById(userId);
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
 
-      // Create a new post
       const newPost = new Post({
         userId,
         firstName: user.firstName,
@@ -50,16 +44,11 @@ export const createPost = async (req, res) => {
         comments: [],
       });
 
-      // Save the new post to the database
       const newPostData = await newPost.save();
 
-      // Fetch all posts after saving the new post
-
-      // Return the updated list of posts
       res.status(201).json(newPostData);
     });
   } catch (error) {
-    // Handle any other errors
     console.error("Error creating post:", error);
     res.status(500).json({ message: "Internal server error" });
   }
@@ -115,15 +104,13 @@ export const likePost = async (req, res) => {
 export const addComment = async (req, res) => {
   try {
     const { postId } = req.params;
-    const { userId, comment ,userPicturePath,userName} = req.body;
+    const { userId, comment, userPicturePath, userName } = req.body;
 
-    // Find the post by postId
     const post = await Post.findById(postId);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    // Create a new comment object
     const newComment = {
       userId,
       userPicturePath,
@@ -132,10 +119,8 @@ export const addComment = async (req, res) => {
       createdAt: new Date(),
     };
 
-    // Add the new comment to the post
     post.comments.push(newComment);
 
-    // Save the updated post
     await post.save();
 
     res.status(201).json({ message: "Comment added successfully" });
@@ -148,16 +133,11 @@ export const deletePost = async (req, res) => {
   try {
     const { id } = req.params;
 
-    // Find the post by ID
     const post = await Post.findById(id);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
 
-    // Check if the current user is the owner of the post (optional)
-    // You may want to implement authentication and authorization to ensure only the owner can delete the post
-
-    // Delete the post
     await Post.findByIdAndDelete(id);
 
     res.status(200).json({ message: "Post deleted successfully" });

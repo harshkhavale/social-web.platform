@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { RiDeleteBinLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
@@ -10,7 +9,7 @@ import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { assetUrl, userRequest } from "../requestMethods";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import toast from "react-hot-toast";
-const Post = ({ post ,feedsControl}) => {
+const Post = ({ post, feedsControl }) => {
   const token = useSelector((state) => state.token);
   const [like, setLike] = useState(false);
   const [comment, setComment] = useState("");
@@ -45,7 +44,7 @@ const Post = ({ post ,feedsControl}) => {
     }
     feedsControl();
   };
- 
+
   const toggleCommentToggle = () => {
     setCommentToggle(!commentToggle);
   };
@@ -98,11 +97,14 @@ const Post = ({ post ,feedsControl}) => {
             className="p-1 border-2 text-sm flex items-center border-sky-500 rounded-2xl text-sky-500 font-bold"
             onClick={handleFollow}
           >
-            {
-              isFriend
-               ? "unfollow"
-                : (<div className=" flex items-center"><p>follow</p><AddCircleOutlineIcon /></div>)
-            }
+            {isFriend ? (
+              "unfollow"
+            ) : (
+              <div className=" flex items-center">
+                <p>follow</p>
+                <AddCircleOutlineIcon />
+              </div>
+            )}
           </button>
         )}
       </div>
@@ -153,7 +155,9 @@ const Post = ({ post ,feedsControl}) => {
                 </p>
               </div>
               <div className=" flex items-center gap-4">
-                <p className=" hidden md:visible font-bold">{comment.userName}</p>
+                <p className=" hidden md:visible font-bold">
+                  {comment.userName}
+                </p>
                 <img
                   src={`${assetUrl}${comment.userPicturePath}`}
                   className=" rounded-full h-10 w-10"

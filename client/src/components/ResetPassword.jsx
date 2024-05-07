@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { publicRequest } from "../requestMethods";
 import toast from "react-hot-toast";
 
 const ResetPassword = ({ userhandler, close, changeAuth }) => {
-  const { token } = useParams(); // Extract the token from the URL
+  const { token } = useParams();
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  // Function to handle password recovery
   const handleResetPassword = async () => {
     if (newPassword === confirmPassword) {
       try {
@@ -17,16 +16,15 @@ const ResetPassword = ({ userhandler, close, changeAuth }) => {
           token: token,
           newPassword: newPassword,
         });
-        if(response.status === 200) {
-            toast.success("Password changed successfully! SIGNIN please");
-            changeAuth('SI');
+        if (response.status === 200) {
+          toast.success("Password changed successfully! SIGNIN please");
+          changeAuth("SI");
         }
       } catch (error) {
         toast.error(error.message);
       }
-    }
-    else{
-        toast.error("new password and confirm password do not match")
+    } else {
+      toast.error("new password and confirm password do not match");
     }
   };
 

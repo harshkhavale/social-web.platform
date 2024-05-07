@@ -21,16 +21,15 @@ const HomePage = () => {
     try {
       const axiosInstance = userRequest(token);
       const response = await axiosInstance.get("/posts/");
-      dispatch(setPosts(response.data)); // Dispatch the action to update the posts
-      setFeeds(response.data); // Set the feeds state
+      dispatch(setPosts(response.data));
+      setFeeds(response.data);
     } catch (error) {
       console.error("Error fetching feeds:", error);
     }
   };
   useEffect(() => {
-    
     getFeeds();
-  }, [token, dispatch,user,posts]); // Depend only on 'token' and 'dispatch'
+  }, [token, dispatch, user, posts]);
 
   return (
     <div className="homepage md:grid grid-cols-5 gap-2 lg:mx-10">
@@ -51,13 +50,15 @@ const HomePage = () => {
           ? feeds
               .slice()
               .reverse()
-              .map((post) => <Post feedsControl={getFeeds} key={post._id} post={post} />)
+              .map((post) => (
+                <Post feedsControl={getFeeds} key={post._id} post={post} />
+              ))
           : "No feeds available"}
       </div>
 
       <div className="advertise col-span-1 p-2 ">
         <Advertise />
-        <FriendList/>
+        <FriendList />
       </div>
     </div>
   );

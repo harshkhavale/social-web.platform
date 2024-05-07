@@ -1,6 +1,5 @@
 import User from "../models/User.js";
 
-/* READ */
 export const getUser = async (req, res) => {
   try {
     const { id } = req.params;
@@ -20,8 +19,8 @@ export const getUserFriends = async (req, res) => {
       user.friends.map((id) => User.findById(id))
     );
     const formattedFriends = friends.map(
-      ({ _id, firstName, lastName,  picture }) => {
-        return { _id, firstName, lastName,  picture };
+      ({ _id, firstName, lastName, picture }) => {
+        return { _id, firstName, lastName, picture };
       }
     );
     res.status(200).json(formattedFriends);

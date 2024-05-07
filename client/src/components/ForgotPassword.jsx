@@ -3,22 +3,21 @@ import { publicRequest } from "../requestMethods";
 import toast from "react-hot-toast";
 
 const ForgotPassword = ({ userhandler, close, changeAuth }) => {
-  const [email,setEmail] = useState('');
-  
+  const [email, setEmail] = useState("");
+
   const sendRecoveryMail = async () => {
-    const response = await publicRequest.post('/auth/forgot-password',{
+    const response = await publicRequest.post("/auth/forgot-password", {
       email: email,
     });
     console.log(response);
     if (response.status === 200) {
       toast.success("Recovery mail sent successfully");
       close();
-    }
-    else{
+    } else {
       toast.error("User with this email not exist");
-      changeAuth('SU');
+      changeAuth("SU");
     }
-  }
+  };
   return (
     <div className="ForgotPassword flex flex-col gap-4">
       <p className=" font-bold text-xl md:text-2xl">Recover Password!</p>
@@ -30,23 +29,20 @@ const ForgotPassword = ({ userhandler, close, changeAuth }) => {
             placeholder="Email"
             name="email"
             value={email}
-            onChange={(e)=>setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             autoComplete="off"
           />
         </div>
       </div>
       <div className=" flex items-center flex-col gap-2">
         <button
-          className=" bg-green-500 p-2 w-full  rounded-full text-white text-center font-bold" onClick={sendRecoveryMail}
-          
+          className=" bg-green-500 p-2 w-full  rounded-full text-white text-center font-bold"
+          onClick={sendRecoveryMail}
         >
           send mail
         </button>
         <p>we will send the directions to the email for password recovery</p>
-       
       </div>
-
-      
     </div>
   );
 };

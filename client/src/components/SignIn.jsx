@@ -35,25 +35,19 @@ const SignIn = ({ close, changeAuth }) => {
             })
           );
         }
-        
-        // Handle successful sign-in, such as updating state or showing a success message
+
         console.log("Sign-in successful", loggedIn);
         toast.success("Sign-in successful!");
         close();
         navigate("/");
-
       } else {
-        // Handle sign-in failure, such as displaying an error message
         console.error("Sign-in failed", response.statusText);
-       
-        toast.error("user dose not exists! check your credentials");
 
-        
+        toast.error("user dose not exists! check your credentials");
       }
     } catch (error) {
       console.error("Sign-in error", error);
       toast.error("user dose not exists! check your credentials");
-
     }
   };
 
@@ -92,7 +86,6 @@ const SignIn = ({ close, changeAuth }) => {
           >
             Sign In
           </button>
-         
         </div>
       </form>
       <div className="other flex flex-col gap-2">

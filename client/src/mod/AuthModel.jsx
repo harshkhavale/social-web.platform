@@ -49,7 +49,7 @@ const AuthModel = ({ handler, userhandler, init }) => {
                 close={handler}
               />
             )}
-             {account === "RP" && (
+            {account === "RP" && (
               <ResetPassword
                 changeAuth={changeAuth}
                 userhandler={userhandler}
