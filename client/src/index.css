@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Happy Monkey";
-  src: url("../public//HappyMonkey-Regular.ttf");
+  font-family: "Roboto";
+  src: url("../public/Roboto-Regular.ttf");
 }
 html,
 body,
@@ -12,7 +12,7 @@ body,
 .app {
   height: 100%;
   width: 100%;
-  font-family: "Happy Monkey", system-ui;
+  font-family: "Roboto", sans-serif;
 }
 ::-webkit-scrollbar {
   width: 12px;
