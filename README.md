@@ -1,3 +1,4 @@
+
 # 🚀 MERN Stack Social Media Application
 
 This project is a social media application developed using the MERN stack (MongoDB, Express.js, React.js, Node.js). It allows users to register, log in, create, read, update, and delete posts, as well as like and comment on posts.
@@ -15,6 +16,7 @@ This project is a social media application developed using the MERN stack (Mongo
 - **Frontend:**
 
   - React.js
+  - Redux (for state management)
   - Tailwind CSS
   - Material-UI
 
@@ -47,7 +49,7 @@ To run the project locally, follow these steps:
 4. Start the backend server:
 
    ```
-   npm start
+   node server.js
    ```
 
 5. Navigate to the frontend directory:
@@ -69,3 +71,27 @@ To run the project locally, follow these steps:
    ```
 
 8. Open your browser and go to `http://localhost:3000` to view the application.
+
+## 📧 Email Configuration
+
+For sending emails, make sure to create a `.env` file in the `server` directory and add the following configuration:
+
+```
+EMAIL_FROM="YOUR_GMAIL_ID"
+SMTP_HOST="HOSTNAME(GOOGLE)"
+SMTP_PORT=PORT.NO
+SMTP_SECURE=true    # Set to true for SSL/TLS connection
+EMAIL_USERNAME="YOUR_GMAIL_ID"
+EMAIL_PASSWORD="GMAILAPPPASSWORD"  # Replace with your actual Gmail app password
+RESET_PASSWORD_SECRET="YOURSECRETKEY"
+PORT=5000 MONGO_URL="YOURMONGOURL"
+JWT_SECRET="JWTSECERT"
+```
+
+Make sure to replace `EMAIL_PASSWORD` with your actual Gmail app password.
+
+## 🌐 Deployed Version
+
+The application is deployed on [Vercel](https://social-web-platform.vercel.app). You can visit the deployed version at [https://social-web-platform.vercel.app](https://social-web-platform.vercel.app).
+
+
